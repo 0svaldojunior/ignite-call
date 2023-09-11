@@ -6,11 +6,11 @@ const roboto = Roboto({ weight: '400', subsets: ['latin'] })
 
 export const metadata: Metadata = {
   title: 'Ignite Call',
-  description: 'Ignite call by Rocketseat'
+  description: 'Ignite call by Rocketseat',
 }
 
 export default function RootLayout({
-  children
+  children,
 }: {
   children: React.ReactNode
 }) {

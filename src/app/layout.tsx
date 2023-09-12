@@ -18,7 +18,7 @@ export default function RootLayout({
     <html lang="en" className="dark m-0 box-border p-0 antialiased">
       <body className={roboto.className}>
         <div className="min-h-screen bg-gray-100 text-gray-900 dark:bg-gray-900 dark:text-gray-100">
-          <main>{children}</main>
+          <main className="h-screen w-screen">{children}</main>
         </div>
       </body>
     </html>

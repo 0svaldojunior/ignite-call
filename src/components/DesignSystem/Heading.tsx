@@ -1,4 +1,4 @@
-import { ComponentProps } from 'react'
+import { ComponentProps, HTMLAttributes } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const tvHeading = tv({
@@ -14,17 +14,45 @@ const tvHeading = tv({
       '3xl': 'text-5xl',
       '4xl': 'text-6xl',
       '5xl': 'text-7xl',
-      '6xl': 'text-8xl'
-    }
+      '6xl': 'text-8xl',
+    },
   },
 
   defaultVariants: {
-    size: 'default'
-  }
+    size: 'default',
+  },
 })
 
-export type HeadingProps = ComponentProps<'h2'> & VariantProps<typeof tvHeading>
+type AllowedValues = 'h1' | 'h2' | 'strong'
 
-export function Heading({ size, className, ...props }: HeadingProps) {
-  return <h2 className={tvHeading({ size, className })} {...props} />
+export type HeadingProps = ComponentProps<AllowedValues> &
+  VariantProps<typeof tvHeading> & {
+    as?: AllowedValues
+    className?: string
+  }
+
+export function Heading({ as, size, className, ...props }: HeadingProps) {
+  switch (as) {
+    case 'h1':
+      return (
+        <h1
+          className={tvHeading({ size, className })}
+          {...(props as HTMLAttributes<HTMLElement>)}
+        />
+      )
+    case 'strong':
+      return (
+        <strong
+          className={tvHeading({ size, className })}
+          {...(props as HTMLAttributes<HTMLElement>)}
+        />
+      )
+    default:
+      return (
+        <h2
+          className={tvHeading({ size, className })}
+          {...(props as HTMLAttributes<HTMLElement>)}
+        />
+      )
+  }
 }

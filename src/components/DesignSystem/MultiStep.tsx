@@ -18,17 +18,17 @@ const tvMultiStep = tv({
       9: 'grid-cols-9',
       10: 'grid-cols-10',
       11: 'grid-cols-11',
-      12: 'grid-cols-12'
+      12: 'grid-cols-12',
     },
 
     active: {
-      true: 'bg-ignite-300 dark:bg-ignite-300'
-    }
+      true: 'bg-ignite-300 dark:bg-ignite-300',
+    },
   },
 
   defaultVariants: {
-    cols: 2
-  }
+    cols: 2,
+  },
 })
 
 export type MultiStepProps = ComponentProps<'div'> &

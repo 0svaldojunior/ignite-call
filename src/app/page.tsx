@@ -8,9 +8,9 @@ export default function Home() {
   return (
     <div
       className={`
-      flex h-screen flex-col justify-center gap-10 px-10 text-start 
-      lg:ml-auto lg:max-w-home-container lg:flex-row lg:items-center lg:gap-20
-    `}
+        flex flex-col gap-5 px-10 py-10 text-start 
+        lg:ml-auto lg:h-screen lg:max-w-home-container lg:flex-row lg:items-center lg:gap-20
+      `}
     >
       <div className="lg:min-w-[480px] lg:px-10 lg:py-0">
         <Heading size="2xl" className="pb-4 text-5xl lg:text-6xl">

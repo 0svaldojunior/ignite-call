@@ -2,7 +2,8 @@
 
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight } from 'lucide-react'
-import { ComponentProps } from 'react'
+import { useSearchParams } from 'next/navigation'
+import { ComponentProps, useEffect } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { Box } from './DesignSystem/Box'
@@ -27,10 +28,19 @@ export function RegisterForm(props: RegisterFormProps) {
   const {
     register,
     handleSubmit,
+    setValue,
     formState: { errors, isSubmitting },
   } = useForm<RegisterFormData>({
     resolver: zodResolver(registerFormSchema),
   })
+
+  const searchParams = useSearchParams()
+
+  useEffect(() => {
+    if (searchParams.get('username')) {
+      setValue('username', String(searchParams.get('username')))
+    }
+  }, [searchParams, setValue])
 
   async function handleRegister(data: RegisterFormData) {
     console.log(data)
@@ -52,7 +62,7 @@ export function RegisterForm(props: RegisterFormProps) {
         />
 
         {errors.username ? (
-          <Text size="xs" className="text-error-500 dark:text-error-500 -mt-1">
+          <Text size="xs" className="-mt-1 text-error-500 dark:text-error-500">
             {errors.username?.message}
           </Text>
         ) : (
@@ -65,7 +75,7 @@ export function RegisterForm(props: RegisterFormProps) {
         <TextInput placeholder="Seu nome" {...register('name')} />
 
         {errors.name ? (
-          <Text size="xs" className="text-error-500 dark:text-error-500 -mt-1">
+          <Text size="xs" className="-mt-1 text-error-500 dark:text-error-500">
             {errors.name?.message}
           </Text>
         ) : (

@@ -5,7 +5,7 @@ const tvTextInput = tv({
   base: [
     'w-full border-0 bg-transparent text-sm font-normal text-black',
     'placeholder:text-gray-400 focus:outline-0 disabled:cursor-not-allowed ',
-    'dark:text-white',
+    'dark:text-white disabled:opacity-30',
   ],
 
   variants: {
@@ -42,7 +42,7 @@ export const TextInput = forwardRef<HTMLInputElement, TextInputProps>(
       <div
         className={`
         focus-within:border-ignite-300', box-border flex items-baseline rounded-md border border-solid border-gray-100/20 bg-gray-100/20 px-3 py-4
-        disabled:cursor-not-allowed disabled:opacity-50 dark:border-gray-900 dark:bg-gray-900 dark:focus-within:border-ignite-300
+        disabled:cursor-not-allowed dark:border-gray-900 dark:bg-gray-900 dark:focus-within:border-ignite-300
       `}
       >
         {!!prefix && (

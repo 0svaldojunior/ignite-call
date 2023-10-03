@@ -2,7 +2,7 @@ import { ComponentProps } from 'react'
 import { VariantProps, tv } from 'tailwind-variants'
 
 const tvText = tv({
-  base: 'm-0 font-normal text-gray-800 dark:text-gray-100',
+  base: 'm-0 font-normal',
 
   variants: {
     size: {

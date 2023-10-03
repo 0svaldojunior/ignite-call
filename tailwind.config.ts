@@ -13,6 +13,11 @@ const config: Config = {
         'claim-form': '1fr auto',
       },
 
+      calendar: {
+        invert:
+          'input::-webkit-calendar-picker-indicator: { filter: invert(100%) brightness(30%) }',
+      },
+
       colors: {
         ignite: {
           300: '#00B37E',

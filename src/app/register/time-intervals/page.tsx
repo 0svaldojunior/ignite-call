@@ -11,6 +11,7 @@ import { convertTimeStringToMinutes } from '@/utils/convert-time-string-to-minut
 import { days, getWeekDays } from '@/utils/get-week-days'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { ArrowRight } from 'lucide-react'
+import { useRouter } from 'next/navigation'
 import { Controller, useFieldArray, useForm } from 'react-hook-form'
 import { z } from 'zod'
 import { FormError } from './components/FormError'
@@ -84,6 +85,8 @@ export default function TimeIntervals() {
 
   const weekDays = getWeekDays()
 
+  const router = useRouter()
+
   const { fields } = useFieldArray({
     control,
     name: 'intervals',
@@ -98,6 +101,10 @@ export default function TimeIntervals() {
     await api.post('/users/time-intervals', {
       intervals,
     })
+  }
+
+  async function handleNextPage() {
+    await router.push('/register/update-profile')
   }
 
   return (
@@ -207,7 +214,7 @@ export default function TimeIntervals() {
           <FormError size="xs">{errors.intervals.root?.message}</FormError>
         )}
 
-        <Button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting} onClick={handleNextPage}>
           Próximo passos
           <ArrowRight />
         </Button>

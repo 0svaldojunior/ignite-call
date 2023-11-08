@@ -30,7 +30,7 @@ export type UpdateProfileProps = ComponentProps<'form'>
 const ProfileBox = React.forwardRef<HTMLFormElement, ProfileBoxProps>(
   ({ avatarUrl, ...props }, ref) => {
     const [dataTextArea, setDataTextArea] = useState<string>('')
-    
+
     const {
       register,
       handleSubmit,

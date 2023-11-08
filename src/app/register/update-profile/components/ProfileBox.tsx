@@ -1,17 +1,18 @@
 'use client'
 
+import React, { ChangeEvent, ComponentProps, useState } from 'react'
+
+import { ArrowRight } from 'lucide-react'
 import { Avatar } from '@/components/DesignSystem/Avatar'
 import { Box } from '@/components/DesignSystem/Box'
 import { Button } from '@/components/DesignSystem/Button'
+import { FormAnnotation } from './FormAnnotation'
 import { Text } from '@/components/DesignSystem/Text'
 import { TextArea } from '@/components/DesignSystem/TextArea'
 import { api } from '@/lib/axios'
-import { zodResolver } from '@hookform/resolvers/zod'
-import { ArrowRight } from 'lucide-react'
-import React, { ComponentProps, useState } from 'react'
 import { useForm } from 'react-hook-form'
 import { z } from 'zod'
-import { FormAnnotation } from './FormAnnotation'
+import { zodResolver } from '@hookform/resolvers/zod'
 
 const updateProfileSchema = z.object({
   bio: z.string(),
@@ -28,8 +29,8 @@ export type UpdateProfileProps = ComponentProps<'form'>
 
 const ProfileBox = React.forwardRef<HTMLFormElement, ProfileBoxProps>(
   ({ avatarUrl, ...props }, ref) => {
-    const [dataTextArea, setDataTextArea] = useState()
-
+    const [dataTextArea, setDataTextArea] = useState<string>('')
+    
     const {
       register,
       handleSubmit,
@@ -39,7 +40,7 @@ const ProfileBox = React.forwardRef<HTMLFormElement, ProfileBoxProps>(
     })
 
     async function handleUpdateProfile(data: UpdateProfileData) {
-      console.log(dataTextArea)
+      console.log(data)
       await api.put('/users/profile', {
         bio: data.bio,
       })
@@ -49,7 +50,7 @@ const ProfileBox = React.forwardRef<HTMLFormElement, ProfileBoxProps>(
       <Box
         as="form"
         className="mt-6 flex w-full max-w-[572px] flex-col gap-4"
-        onChange={(event) => {
+        onChange={(event: ChangeEvent<HTMLInputElement>) => {
           setDataTextArea(event.target.value)
         }}
         onSubmit={handleSubmit(handleUpdateProfile)}

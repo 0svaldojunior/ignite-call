@@ -11,10 +11,7 @@ export default async function UpdateProfile() {
     buildNextAuthOptions(NextRequest.prototype, NextResponse.next()),
   )
 
-  console.log(session)
-
   const avatarUrl = session?.user.avatar_url
-  console.log(avatarUrl)
 
   return (
     <div className="space-y-4 px-4 pt-20 lg:flex lg:flex-col lg:items-center ">
